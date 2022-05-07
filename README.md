@@ -1,10 +1,10 @@
 # Wetha-Wizard
 
 ## General Info
-The purpose of this challenge was to create a working weather dashboard capable of displaying a cities current weather alongside a 5-day forecast. The user's previous searches needed to be saved to be used later and the weather fields needed accompanying icons as well.
+The purpose of this challenge was to create a working weather dashboard capable of displaying a city's current weather alongside a 5-day forecast. The user's previous searches needed to be saved to be used later and the weather fields needed accompanying icons as well.
 
 ## Creating Weather Dashboard Layout
-I originally tried to hard code the html page but was having difficulties organizing the div boxes for each piece. I created loops that would create buttons  I set the basic framework and added in ids for the data to be displayed on my cards. This would help me append the data to the correct positions later on.
+I originally tried to hard code the html page but was having difficulties organizing the div boxes for each piece. I created loops that would create buttons for previously searched cities. I set up the basic divs for the different sections I would need and added in ids for the data to be displayed on my cards. This would help me append the data to the correct positions later on.
 
 ![setting up submit button to create buttons for searched cities](./Assets/images/searchbuttoncreatebuttons.png)
 
@@ -17,12 +17,12 @@ To ensure the user could not generate search buttons for incorrect/invalid searc
 ![function to handle incorrect or invalid searches](./Assets/images/errorfeaturehandleincorrectsearch.png)
 
 ## Pulling Weather Data
-To display the current weather data for the cities searched and to populate the 5-day forecast box I needed to use the OpenWeatherApi to make calls for the different results I wanted to display. I had to make two separate API calls to grab data for the current weather section as well as for the 5-day forecast cards. 
+To display the current weather data for the cities searched and to populate the 5-day forecast box, I needed to use the OpenWeatherApi to make calls for the different results I wanted to display. I had to make two separate API calls to grab data for the current weather section and for the 5-day forecast cards. 
 
 ![setting up api calls](./Assets/images/apicallsgeneral.png)
 
 ### Current Weather
-To get the data for the current weather I needed to specify through the api which endpoints I wanted to use and then match those with the html elements with matching id so that they would be displayed for the user.
+To get the data for the current weather I needed to specify through the api which endpoints I wanted to use and then match those with the html element(by id) so that they would be displayed for the user.
 
 ![setting up current weather display](./Assets/images/matchingidcurrentweather.png)
 
@@ -31,9 +31,7 @@ The UV Index icon needed to change according to the value so to do that I used a
 ![setting up UV Index icon color change](./Assets/images/UVindex.png)
 
 ### 5-Day Forecast
-Similar to getting the data for the current weather, I needed to specify which endpoints I wanted returned for the five day forecast. The data results were then appended to the different cards and the date feature was handled by moment.js. I used a for loop to get data for multiple days and set the loop length to -2 since the api was set to return data for 7 days and I only needed 5.
-
-
+Similar to getting the data for the current weather, I needed to specify which endpoints I wanted returned for the five day forecast. The data results were then appended to the different cards and the date feature was handled by moment.js. I used a for loop to get data for multiple days and set the loop length to -2 since the api was set to return data for 7 days by default and I only needed 5.
 
 ![using api to get data for current weather and forecast cards based on 7 day forecast](./Assets/images/gettingdataforcurrentandfiveforecast.png)
 
