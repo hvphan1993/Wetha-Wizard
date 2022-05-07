@@ -1,142 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-us">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <title>Weather Dashboard</title>
   </head>
   <body>
-    <div class="row">
-      <div class="container col-12">
-        <h2 class="col-12 text-center text-white bg-primary bg-gradient">
-          Weather Dashboard
-        </h2>
-      </div>
-
-      <div class="bg-danger col-md-2">
-        <div class="bg-warning col-md-12 mt-5 mb-5 pr-1 pl-1 pt-1 pb-1">
-          <h5 class="col-12 font-weight-bold" id="city search">
-            Search for a City:
-          </h5>
-          <div id="city-search" class="form-group">
-            <!-- <label for="name-input">Your name:</label> -->
-            <input
-              type="text"
-              class="form-control ps-1 col-12 border border-dark"
-              id="name-input"
-              placeholder="Enter city name"
-            />
-            <button id="submit" class="col-12 mt-2 btn btn-primary" type="submit">Search</button>
+    <!-- Weather Dashboard -->
+    <!-- Make main items dynamic instead! Bootstrap styling -->
+    <header class="navbar bg-primary">
+      <!-- gradient effect not working -->
+      <h1 class="display-4 text-light mx-auto">Weather Dashboard</h1>
+    </header>
+    <div class="container-fluid">
+      <div class="row mt-2">
+        <!-- Sidebar column here -->
+        <aside class="col-lg-4">
+          <div class="card bg-light p-2 mb-2">
+            <!-- Search Form Here -->
+            <h4>Enter a City Name:</h4>
+            <form class="form-inline" id="city-form">
+              <input
+                id="city-input"
+                class="form-control sm-2"
+                type="search"
+                aria-label="Search"
+              />
+              <button
+                type="button"
+                id="form-submit"
+                class="btn btn-primary"
+                type="submit"
+              >
+                <i class="fas fa-search"></i>
+              </button>
+            </form>
+            <!-- Cities searched will appear as buttons in a list -->
+            <ul class="list-group mt-2" id="city-list"></ul>
           </div>
-
-          <container id="container">
-            <ul id="city-list" class="list-group col-13">
-              <!-- <li
-                id="saveLocation1"
-                class="btn list-group-item mt-1 mb-1 bg-secondary text-black"
-              ></li>
-              <li
-                id="saveLocation2"
-                class="btn list-group-item mt-1 mb-1 bg-secondary text-black"
-              ></li>
-              <li
-                id="saveLocation3"
-                class="btn list-group-item mt-1 mb-1 bg-secondary text-black"
-              ></li>
-              <li
-                id="saveLocation4"
-                class="btn list-group-item mt-1 mb-1 bg-secondary text-black"
-              ></li>
-              <li
-                id="saveLocation5"
-                class="btn list-group-item mt-1 mb-1 bg-secondary text-black"
-              ></li>
-              <li
-                id="saveLocation4"
-                class="btn list-group-item mt-1 mb-1 bg-secondary text-black"
-              ></li>
-              <li
-                id="saveLocation5"
-                class="btn list-group-item mt-1 mb-1 bg-secondary text-black"
-              ></li>
-              <li
-                id="saveLocation5"
-                class="btn list-group-item mt-1 mb-1 bg-secondary text-black"
-              ></li> -->
-            </ul>
-          </container>
-        </div>
-      </div>
-
-      <div class="bg-danger col-md-10">
-        <!-- add current day weather in searched city -->
-        <div class="col-md-11 bg-warning mt-5">
-          <h3 id="city-search-header">CURRENT WEATHER</h3>
-          <div id="message"></div>
-        </div>
-
-        <div class="col-11 bg-warning">
-          <!-- add 5 day forecast -->
-          <div id="forecastBoxes" class="col-md-12">
-            <h3 class="text-center">5-Day Forecast</h3>
-
-            <!-- Add classes to create a row with content having space around it -->
-            <section
-              class="row justify-content-around top-0 start-100 translate-middle"
-            >
-              <!-- Add classes to create a column that spans full width on mobile, half width on medium screens, and 1/3 on larger screens -->
-              <div class="mb-3 col-12 col-md-2">
-                <div class="card">
-                  <div id="forecast1" class="card-body">
-                    <p class="card-text">Date Icon Temp wind speed humidity</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="mb-3 col-12 col-md-2">
-                <div class="card">
-                  <div id="forecast2" class="card-body">
-                    <p class="card-text">Date Icon Temp wind speed humidity</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="mb-3 col-12 col-md-2">
-                <div class="card">
-                  <div id="forecast3" class="card-body">
-                    <p class="card-text">Date Icon Temp wind speed humidity</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="mb-3 col-12 col-md-2">
-                <div class="card">
-                  <div id="forecast4" class="card-body">
-                    <p class="card-text">Date Icon Temp wind speed humidity</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="mb-3 col-12 col-md-2">
-                <div class="card">
-                  <div id="forecast5" class="card-body">
-                    <p class="card-text">Date Icon Temp wind speed humidity</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
+        </aside>
+        <!-- Second column for the current and 5-day forecast -->
+        <div class="col-lg-8">
+          <!-- Placeholder weather data to be displayed before search begins -->
+          <section id="current" class="card p-2" style="display: none">
+            <h1 id="city"></h1>
+            <h5 id="date"></h5>
+            <p id="temp"></p>
+            <p id="humidity"></p>
+            <p id="wind"></p>
+            <p id="uv-index">UV Index: <span class="color"></span></p>
+          </section>
+          <!-- Placeholder for the 5-day forecast -->
+          <section id="fiveDay" class="mt-2 mb-2" style="display: none">
+            <h3>5-Day Forecast:</h3>
+            <!-- Dynamically create 5-day forecast cards -->
+            <div class="card-deck"></div>
+          </section>
         </div>
       </div>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="./assets/js/script.js"></script>
+    <script src="./weatherscript.js"></script>
   </body>
 </html>
