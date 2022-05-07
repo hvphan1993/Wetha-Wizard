@@ -14,7 +14,7 @@ $(document).ready(function () {
       a +
       "&lon=" +
       b +
-      "&exclude=minutely,hourly&appid=aec299195260a001b09706b5bfe740f7&units=imperial";
+      "&exclude=minutely,hourly&appid=64202e177c289863c7fc1a91faaa2e6b&units=imperial";
     // second API call for rest of the current weather data + 5 day forecast
     $.ajax({
       url: searchUrl2,
