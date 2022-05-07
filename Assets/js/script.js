@@ -134,12 +134,12 @@ $(document).ready(function () {
     // more buttons will be created dynamically each time a city is searched
     var cityList = $("<button>");
     cityList.addClass(
-      "list-group-item list-group-item-action bg-secondary text-white mt-2 mb-2"
+      "list-group-item list-group-item-action text-center text-capitalize bg-secondary text-white mt-2 mb-2"
     );
     cityList.text(cityName);
     // add buttons to sidebar list
     $("ul").prepend(cityList);
-    //after the user's city is saved to the list, the input field is cleared out
+    // clear input list after user search query saved
     $("input").val("");
     getWeather();
   }
@@ -162,5 +162,22 @@ $(document).ready(function () {
   });
 
 
-  
+   // error handling protocol for when user fails to add city name or misspells city name
+   $(document).ajaxError(function () {
+    // create a dynamic p element
+    var error = $("<p>");
+    error.addClass("error");
+    error.css({ color: "red"});
+    error.text("Please enter a valid city name");
+    // error message prepended to appear below text field
+    $("ul").prepend(error);
+    // identify and find created button linked to incorrect user input for deletion
+    var p = $(this).find("button");
+    // remove the button connected to incorrect input
+    p[1].remove();
+    // set timer of error message to 3 seconds
+    setTimeout(function () {
+      error.remove();
+    }, 3000);
+  });
 });
